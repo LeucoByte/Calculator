@@ -2,7 +2,7 @@
 
 import unittest
 
-from calculator.operations import add, subtract
+from calculator.operations import add, multiply, subtract
 
 
 class TestAdd(unittest.TestCase):
@@ -65,6 +65,37 @@ class TestSubtract(unittest.TestCase):
     def test_rejects_boolean_operand(self):
         with self.assertRaises(TypeError):
             subtract(True, 1)
+
+
+class TestMultiply(unittest.TestCase):
+    def test_multiplies_positive_integers(self):
+        self.assertEqual(multiply(4, 3), 12)
+
+    def test_multiplying_by_zero_gives_zero(self):
+        self.assertEqual(multiply(7, 0), 0)
+
+    def test_multiplying_by_one_is_identity(self):
+        self.assertEqual(multiply(7, 1), 7)
+
+    def test_negative_times_positive_is_negative(self):
+        self.assertEqual(multiply(-4, 3), -12)
+
+    def test_negative_times_negative_is_positive(self):
+        self.assertEqual(multiply(-4, -3), 12)
+
+    def test_multiplies_floats(self):
+        self.assertAlmostEqual(multiply(1.5, 2.0), 3.0)
+
+    def test_mixed_int_and_float_returns_float(self):
+        self.assertEqual(multiply(2, 2.5), 5.0)
+
+    def test_rejects_string_operand(self):
+        with self.assertRaises(TypeError):
+            multiply("2", 3)
+
+    def test_rejects_boolean_operand(self):
+        with self.assertRaises(TypeError):
+            multiply(3, False)
 
 
 if __name__ == "__main__":

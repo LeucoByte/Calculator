@@ -24,3 +24,9 @@ def subtract(a, b):
     """Return ``a`` minus ``b``."""
     _check_operands(a, b)
     return a - b
+
+
+def multiply(a, b):
+    """Return the product of ``a`` and ``b``."""
+    _check_operands(a, b)
+    return a * b
