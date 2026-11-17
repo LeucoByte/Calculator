@@ -18,3 +18,9 @@ def add(a, b):
     """Return the sum of ``a`` and ``b``."""
     _check_operands(a, b)
     return a + b
+
+
+def subtract(a, b):
+    """Return ``a`` minus ``b``."""
+    _check_operands(a, b)
+    return a - b
