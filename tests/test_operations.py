@@ -2,7 +2,7 @@
 
 import unittest
 
-from calculator.operations import add, multiply, subtract
+from calculator.operations import add, divide, multiply, subtract
 
 
 class TestAdd(unittest.TestCase):
@@ -96,6 +96,43 @@ class TestMultiply(unittest.TestCase):
     def test_rejects_boolean_operand(self):
         with self.assertRaises(TypeError):
             multiply(3, False)
+
+
+class TestDivide(unittest.TestCase):
+    def test_divides_exactly(self):
+        self.assertEqual(divide(6, 3), 2.0)
+
+    def test_returns_float_for_fractional_result(self):
+        self.assertAlmostEqual(divide(1, 4), 0.25)
+        self.assertIsInstance(divide(1, 4), float)
+
+    def test_negative_dividend(self):
+        self.assertEqual(divide(-6, 3), -2.0)
+
+    def test_negative_divisor(self):
+        self.assertEqual(divide(6, -3), -2.0)
+
+    def test_zero_dividend_gives_zero(self):
+        self.assertEqual(divide(0, 5), 0.0)
+
+    def test_divides_floats(self):
+        self.assertAlmostEqual(divide(7.5, 2.5), 3.0)
+
+    def test_division_by_zero_raises(self):
+        with self.assertRaisesRegex(ZeroDivisionError, "cannot divide by zero"):
+            divide(1, 0)
+
+    def test_division_by_zero_float_raises(self):
+        with self.assertRaises(ZeroDivisionError):
+            divide(1, 0.0)
+
+    def test_rejects_string_operand(self):
+        with self.assertRaises(TypeError):
+            divide("6", 3)
+
+    def test_rejects_boolean_operand(self):
+        with self.assertRaises(TypeError):
+            divide(True, 1)
 
 
 if __name__ == "__main__":

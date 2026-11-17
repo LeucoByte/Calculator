@@ -30,3 +30,14 @@ def multiply(a, b):
     """Return the product of ``a`` and ``b``."""
     _check_operands(a, b)
     return a * b
+
+
+def divide(a, b):
+    """Return ``a`` divided by ``b`` as a float.
+
+    Raises ``ZeroDivisionError`` when ``b`` is zero.
+    """
+    _check_operands(a, b)
+    if b == 0:
+        raise ZeroDivisionError("cannot divide by zero")
+    return a / b
